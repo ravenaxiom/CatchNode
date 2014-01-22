@@ -1,0 +1,2 @@
+- Rock players in time with app.game.bpm
+- Notes should hit the player in time too

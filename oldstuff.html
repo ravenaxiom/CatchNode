@@ -1,0 +1,176 @@
+notes start -30
+players at 812 - 60 - 30 = 722
+
+distance = 752
+
+4 beats = 60 x 4 frames = 240 frames total
+
+3.13 per frame
+
+
+
+
+
+OLD RANDOM STUFF
+
+if(bpmCounter % bpm == 0) {
+/* 				console.log('beat'); */
+				beatCounter += 1;
+				p1Counter += 1;
+				p2Counter += 1;
+				p2RandomShifterCounter += 1;			
+				p2BreakCounter += 1;
+				bluesCounter += 1;		
+				
+				if(p2BreakTimer > 0) {
+					p2BreakTimer -= 1;
+				}	
+			}
+				// beats
+			if(beatCounter >= 4) {
+				beatCounter = 0;
+/* 				console.log('bar'); */
+/* 				app.media.play('beat_high-hat'); */
+				
+				app.notes.add(0, 'A', 0);
+				
+			}
+
+
+		
+			// counter for song structure
+			if(bluesCounter == 8 || bluesCounter == 16 || bluesCounter == 32 || bluesCounter == 48 || bluesCounter == 64) {
+				if(Math.random() > 0.8 ) {
+					currentNoteType = 'key';
+				}
+			}
+			else if(bluesCounter == 7 || bluesCounter == 15 || bluesCounter == 31 || bluesCounter == 47 || bluesCounter == 63) {
+				if(Math.random() > 0.8) {
+					currentNoteType = 'blues';
+				}
+			}
+			
+			// player 1 notes
+
+			// p2 random shifter (makes sets of notes)
+			if(p2RandomShifterCounter >= 8) {
+				p2RandomShifter = Math.random() - 0.35;
+				
+				if(p2RandomShifter < 0) {
+					p2RandomShifter = 0;
+				}
+				
+				console.log('random shifter: ', p2RandomShifter);
+				
+				p2RandomShifterCounter = 0;
+			}
+			
+			// p2 break timer
+			if(p2BreakCounter == 16) {
+				if(Math.random() > 0.8) {
+					tempAmount = Math.random();
+					
+					if(tempAmount >= 0.75) {
+						p2BreakTimer = 4;
+					} else if(tempAmount >= 0.5) {
+						p2BreakTimer = 8;
+					} else if(tempAmount >= 0.25) {
+						p2BreakTimer = 12;
+					} else {
+						p2BreakTimer = 16;
+						app.run.randomizeRun();
+					}
+					
+					p2BreakCounter = 0;
+					
+					console.log ('break', p2BreakTimer);
+				}
+			} else if(p2BreakCounter == 32) {
+				if(Math.random() > 0.6) {
+					tempAmount = Math.random();
+					
+					if(tempAmount >= 0.75) {
+						p2BreakTimer = 4;
+					} else if(tempAmount >= 0.5) {
+						p2BreakTimer = 8;
+					} else if(tempAmount >= 0.25) {
+						p2BreakTimer = 12;
+						app.run.randomizeRun();
+					} else {
+						p2BreakTimer = 16;
+						app.run.randomizeRun();
+					}
+					
+					p2BreakCounter = 0;
+					app.run.randomizeRun();
+					
+					console.log ('break', p2BreakTimer);
+				}
+			} else if(p2BreakCounter == 64) {
+				if(Math.random() > 0.4) {
+					tempAmount = Math.random();
+					
+					if(tempAmount >= 0.75) {
+						p2BreakTimer = 4;
+					} else if(tempAmount >= 0.5) {
+						p2BreakTimer = 8;
+					} else if(tempAmount >= 0.25) {
+						p2BreakTimer = 12;
+						app.run.randomizeRun();
+					} else {
+						p2BreakTimer = 16;
+						app.run.randomizeRun();
+					}
+					
+					p2BreakCounter = 0;
+					
+/* 					console.log ('break', p2BreakTimer); */
+				}
+			} else if(p2BreakCounter == 128) {
+				p2BreakTimer = 32;
+				p2BreakCounter = 0;
+				app.run.randomizeRun();
+/* 				console.log ('break', p2BreakTimer); */
+			}
+			
+			// player 2 notes
+			if(p2Counter == 1) {
+				if(Math.random() > 0.95 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0; 
+				}
+			} else if (p2Counter == 2) {
+				if(Math.random() > 0.9 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				}
+			} else if (p2Counter == 3) {
+				if(Math.random() > 0.85 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				}
+			} else if (p2Counter == 4) {
+				if(Math.random() > 0.7 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				}
+			} else if (p2Counter == 5) {
+				if(Math.random() > 0.6 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				}
+			} else if (p2Counter == 6) {
+				if(Math.random() > 0.5 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				}
+			} else if (p2Counter == 7) {
+				if(Math.random() > 0.4 - p2RandomShifter && p2BreakTimer <= 0) {
+					app.notes.add(1, 'A', 0);
+					p2Counter = 0;
+				} 
+			} else if (p2Counter == 8) {
+				app.notes.add(1, 'A', 0);
+				p2Counter = 0;
+			}
+
